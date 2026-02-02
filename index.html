@@ -122,44 +122,39 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
-        .qr-section {
+        .form-section {
             padding: 30px;
             text-align: center;
             background: white;
             display: none;
         }
         
-        .qr-title {
+        .form-title {
             font-size: 24px;
             color: #2c3e50;
             margin-bottom: 20px;
         }
         
-        .qr-code {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 20px;
-            border: 5px solid #ddd;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .form-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 15px 30px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
         
-        .qr-placeholder {
-            width: 180px;
-            height: 180px;
-            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
-                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
-                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
-                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        .form-link:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
         }
         
-        .qr-instructions {
+        .instructions {
             background: #fff3cd;
             border: 1px solid #ffeaa7;
             border-radius: 10px;
@@ -168,24 +163,24 @@
             text-align: left;
         }
         
-        .qr-instructions h3 {
+        .instructions h3 {
             color: #856404;
             margin-bottom: 15px;
             text-align: center;
         }
         
-        .qr-instructions ul {
+        .instructions ul {
             list-style-type: none;
             padding-left: 0;
         }
         
-        .qr-instructions li {
+        .instructions li {
             margin-bottom: 10px;
             padding-left: 20px;
             position: relative;
         }
         
-        .qr-instructions li::before {
+        .instructions li::before {
             content: '⚠️';
             position: absolute;
             left: 0;
@@ -200,6 +195,42 @@
             margin-top: 20px;
             font-size: 14px;
             color: #155724;
+        }
+        
+        .completed-section {
+            padding: 30px;
+            text-align: center;
+            background: white;
+            display: none;
+        }
+        
+        .completed-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            color: #155724;
+            font-size: 18px;
+        }
+        
+        .support-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 15px 30px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .support-link:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
         }
         
         .back-button {
@@ -225,17 +256,6 @@
             
             .step {
                 margin-bottom: 30px;
-            }
-            
-            .qr-code {
-                width: 150px;
-                height: 150px;
-                margin: 0 auto 20px;
-            }
-            
-            .qr-placeholder {
-                width: 140px;
-                height: 140px;
             }
         }
     </style>
@@ -267,26 +287,28 @@
                     </div>
                 </div>
                 
-                <button class="next-button" onclick="showQRPage()">我已知晓，下一步</button>
+                <button class="next-button" onclick="showFormPage()">我已知晓，下一步</button>
             </div>
         </div>
         
-        <!-- 第二页：二维码页面 -->
+        <!-- 第二页：填写花名册 -->
         <div id="page2" class="main-page" style="display: none;">
             <div class="header">
                 <a href="#" class="back-button" onclick="showMainPage()">返回上一步</a>
-                <h1>花名册填写</h1>
-                <p>请扫描下方二维码开始填写</p>
+                <h1>填写花名册</h1>
+                <p>请点击下方链接填写花名册</p>
             </div>
             
-            <div class="qr-section">
-                <h2 class="qr-title">请先扫码下方二维码，填写花名册</h2>
+            <div class="form-section">
+                <h2 class="form-title">填写花名册</h2>
                 
-                <div class="qr-code">
-                    <div class="qr-placeholder"></div>
-                </div>
+                <p>点击下方链接填写花名册</p>
                 
-                <div class="qr-instructions">
+                <a href="https://f.wps.cn/g/PJKCRIH9?flowT=1770032774095&flowSign=596e198201&flow=flow" target="_blank" class="form-link" onclick="markFormStarted()">
+                    点击填写花名册
+                </a>
+                
+                <div class="instructions">
                     <h3>填写注意事项</h3>
                     <ul>
                         <li>身份证号最后一位为X的，请输入大写的X</li>
@@ -300,12 +322,42 @@
                 </div>
             </div>
         </div>
+        
+        <!-- 第三页：完成提示 -->
+        <div id="page3" class="main-page" style="display: none;">
+            <div class="header">
+                <a href="#" class="back-button" onclick="showFormPage()">返回上一步</a>
+                <h1>填写完成</h1>
+                <p>感谢您的配合</p>
+            </div>
+            
+            <div class="completed-section">
+                <div class="completed-message">
+                    您已完成花名册的填写，请提前准备入职材料并耐心等待入职材料提交的通知短信
+                </div>
+                
+                <p>嗨亚24小时智能客户服务：</p>
+                <a href="https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c4" target="_blank" class="support-link">
+                    联系客服
+                </a>
+            </div>
+        </div>
     </div>
 
     <script>
-        function showQRPage() {
+        // 检查是否已经开始了表单填写
+        function markFormStarted() {
+            localStorage.setItem('formStarted', 'true');
+        }
+        
+        function showFormPage() {
             document.getElementById('page1').style.display = 'none';
             document.getElementById('page2').style.display = 'block';
+            
+            // 检查是否有完成标记
+            if (localStorage.getItem('formCompleted') === 'true') {
+                showCompletedPage();
+            }
         }
         
         function showMainPage() {
@@ -313,25 +365,36 @@
             document.getElementById('page1').style.display = 'block';
         }
         
-        // 添加触摸事件支持，以便在移动设备上长按识别二维码
-        document.addEventListener('DOMContentLoaded', function() {
-            const qrCode = document.querySelector('.qr-code');
-            let longPressTimer = null;
-            
-            qrCode.addEventListener('touchstart', function(e) {
-                longPressTimer = setTimeout(function() {
-                    alert('请使用微信或其他扫码应用扫描此二维码');
-                    // 这里可以添加实际的跳转逻辑
-                }, 500); // 500ms 后触发长按
-            });
-            
-            qrCode.addEventListener('touchend', function(e) {
-                clearTimeout(longPressTimer);
-            });
-            
-            qrCode.addEventListener('touchmove', function(e) {
-                clearTimeout(longPressTimer);
-            });
+        function showCompletedPage() {
+            document.getElementById('page2').style.display = 'none';
+            document.getElementById('page3').style.display = 'block';
+        }
+        
+        // 检测从表单返回时的行为
+        window.addEventListener('focus', function() {
+            // 延迟检查，确保页面加载完成
+            setTimeout(function() {
+                if (localStorage.getItem('formStarted') === 'true') {
+                    // 这里可以询问用户是否完成了表单
+                    // 实际场景中，这里可以根据实际需求判断用户是否真的完成了表单
+                    // 目前我们假设用户返回时已经完成
+                    if (!localStorage.getItem('formCompleted')) {
+                        const completed = confirm('您已完成花名册填写吗？');
+                        if (completed) {
+                            localStorage.setItem('formCompleted', 'true');
+                            showCompletedPage();
+                        }
+                    }
+                }
+            }, 1000);
+        });
+        
+        // 页面加载时检查状态
+        window.addEventListener('load', function() {
+            // 如果有完成标记，则直接显示完成页面
+            if (localStorage.getItem('formCompleted') === 'true') {
+                showCompletedPage();
+            }
         });
     </script>
 </body>
