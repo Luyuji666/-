@@ -3,399 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>员工入职办理指引</title>
+    <title>员工入职引导</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            color: #333;
         }
         
         .container {
+            width: 90%;
             max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-        }
-        
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        
-        .step-process {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding: 30px;
-            background: #f8f9fa;
+            text-align: center;
         }
         
-        .process-title {
-            text-align: center;
+        h1 {
             font-size: 24px;
-            margin-bottom: 30px;
-            color: #2c3e50;
+            margin-bottom: 20px;
+            color: #333;
         }
         
-        .steps-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 40px;
+        h2 {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: #333;
         }
         
-        .step {
-            flex: 1;
-            text-align: center;
-            padding: 20px;
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        
+        .step-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+        
+        .step-item {
             position: relative;
+            padding: 15px 0;
+            font-size: 16px;
         }
         
-        .step:not(:last-child)::after {
-            content: '→';
+        .step-item:not(:last-child)::after {
+            content: '↓';
             position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             color: #ccc;
         }
         
-        .step-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
-        .step-text {
-            font-size: 14px;
-            color: #555;
-            line-height: 1.4;
-        }
-        
-        .next-button {
-            display: block;
-            width: 200px;
-            margin: 0 auto;
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn {
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 25px;
+            padding: 12px 30px;
             font-size: 16px;
-            font-weight: bold;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s;
+            margin-top: 20px;
         }
         
-        .next-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        .btn:hover {
+            background-color: #0056b3;
         }
         
-        .form-section {
-            padding: 30px;
-            text-align: center;
-            background: white;
+        .tip {
+            font-size: 14px;
+            text-align: left;
+            margin: 15px 0;
+            color: #666;
+            padding-left: 20px;
+        }
+        
+        .link-container {
+            margin: 20px 0;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            color: #0056b3;
+        }
+        
+        .page {
             display: none;
         }
         
-        .form-title {
-            font-size: 24px;
-            color: #2c3e50;
-            margin-bottom: 20px;
+        .active-page {
+            display: block;
         }
         
-        .form-link {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 15px 30px;
-            background: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .form-link:hover {
-            background: #218838;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
-        }
-        
-        .instructions {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 10px;
-            padding: 20px;
+        .note {
+            background-color: #e9f5ff;
+            border-left: 4px solid #007bff;
+            padding: 15px;
             margin: 20px 0;
             text-align: left;
-        }
-        
-        .instructions h3 {
-            color: #856404;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
-        .instructions ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .instructions li {
-            margin-bottom: 10px;
-            padding-left: 20px;
-            position: relative;
-        }
-        
-        .instructions li::before {
-            content: '⚠️';
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        
-        .time-note {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #155724;
-        }
-        
-        .completed-section {
-            padding: 30px;
-            text-align: center;
-            background: white;
-            display: none;
-        }
-        
-        .completed-message {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-            color: #155724;
-            font-size: 18px;
-        }
-        
-        .support-link {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 15px 30px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .support-link:hover {
-            background: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-        }
-        
-        .back-button {
-            display: inline-block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background: #6c757d;
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .steps-container {
-                flex-direction: column;
-            }
-            
-            .step:not(:last-child)::after {
-                content: '';
-                display: none;
-            }
-            
-            .step {
-                margin-bottom: 30px;
-            }
+            border-radius: 0 5px 5px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 第一页：流程介绍 -->
-        <div id="page1" class="main-page">
-            <div class="header">
-                <h1>欢迎加入我们！</h1>
-                <p>新员工入职办理指引</p>
-            </div>
+        <!-- 首页 -->
+        <div id="page1" class="page active-page">
+            <h1>欢迎加入我们！</h1>
+            <p>以下是入职流程，请按步骤操作：</p>
             
-            <div class="step-process">
-                <h2 class="process-title">办理流程</h2>
-                
-                <div class="steps-container">
-                    <div class="step">
-                        <div class="step-icon">1</div>
-                        <div class="step-text">扫描花名册二维码</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-icon">2</div>
-                        <div class="step-text">收到短信链接后<br>提交入职材料</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-icon">3</div>
-                        <div class="step-text">签署合同</div>
-                    </div>
-                </div>
-                
-                <button class="next-button" onclick="showFormPage()">我已知晓，下一步</button>
-            </div>
+            <ul class="step-list">
+                <li class="step-item">1. 扫描花名册二维码</li>
+                <li class="step-item">2. 提交入职材料</li>
+                <li class="step-item">3. 签署合同</li>
+            </ul>
+            
+            <button class="btn" onclick="showPage(2)">我已知晓，下一步</button>
         </div>
         
-        <!-- 第二页：填写花名册 -->
-        <div id="page2" class="main-page" style="display: none;">
-            <div class="header">
-                <a href="#" class="back-button" onclick="showMainPage()">返回上一步</a>
-                <h1>填写花名册</h1>
-                <p>请点击下方链接填写花名册</p>
-            </div>
+        <!-- 第二页 -->
+        <div id="page2" class="page">
+            <h1>填写花名册</h1>
             
-            <div class="form-section">
-                <h2 class="form-title">填写花名册</h2>
-                
-                <p>点击下方链接填写花名册</p>
-                
-                <a href="https://f.wps.cn/g/PJKCRIH9?flowT=1770032774095&flowSign=596e198201&flow=flow" target="_blank" class="form-link" onclick="markFormStarted()">
-                    点击填写花名册
+            <div class="link-container">
+                <p>点击下方链接填写花名册：</p>
+                <a href="https://f.wps.cn/g/PJKCRIH9?flowT=1770032774095&flowSign=596e198201&flow=flow" target="_blank">
+                    https://f.wps.cn/g/PJKCRIH9?flowT=1770032774095&flowSign=596e198201&flow=flow
                 </a>
-                
-                <div class="instructions">
-                    <h3>填写注意事项</h3>
-                    <ul>
-                        <li>身份证号最后一位为X的，请输入大写的X</li>
-                        <li>现住址填写具体到门牌号，例如"海南省三亚市天涯区建港新城10栋13楼1305"</li>
-                        <li>公司发薪银行为交通银行，请提交本人交通银行卡信息，银行卡号请不要不要不要用空格隔开</li>
-                    </ul>
-                </div>
-                
-                <div class="time-note">
-                    花名册内容填写不多，大约3分钟就能填写完成，请您于今日内完成花名册的填写！
-                </div>
-            </div>
-        </div>
-        
-        <!-- 第三页：完成提示 -->
-        <div id="page3" class="main-page" style="display: none;">
-            <div class="header">
-                <a href="#" class="back-button" onclick="showFormPage()">返回上一步</a>
-                <h1>填写完成</h1>
-                <p>感谢您的配合</p>
             </div>
             
-            <div class="completed-section">
-                <div class="completed-message">
-                    您已完成花名册的填写，请提前准备入职材料并耐心等待入职材料提交的通知短信
-                </div>
-                
+            <div class="note">
+                <p class="tip">• 身份证号最后一位为X的，请输入大写的X。</p>
+                <p class="tip">• 现住址填写具体到门牌号，例如"海南省三亚市天涯区建港新城10栋13楼1305"。</p>
+                <p class="tip">• 公司发薪银行为交通银行，请提交本人交通银行卡信息，银行卡号请不要用空格隔开。</p>
+            </div>
+            
+            <p>花名册内容填写不多，大约3分钟就能填写完成，请您于今日内完成花名册的填写！</p>
+            
+            <button class="btn" onclick="showPage(3)">已完成花名册填写</button>
+        </div>
+        
+        <!-- 第三页 -->
+        <div id="page3" class="page">
+            <h1>花名册填写完成</h1>
+            <p>您已完成花名册的填写，请提前准备入职材料并耐心等待入职材料提交的通知短信</p>
+            
+            <div class="link-container">
                 <p>嗨亚24小时智能客户服务：</p>
-                <a href="https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c4" target="_blank" class="support-link">
-                    联系客服
+                <a href="https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c4" target="_blank">
+                    https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c4
                 </a>
             </div>
         </div>
     </div>
 
     <script>
-        // 检查是否已经开始了表单填写
-        function markFormStarted() {
-            localStorage.setItem('formStarted', 'true');
-        }
-        
-        function showFormPage() {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
+        function showPage(pageNumber) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active-page');
+            });
             
-            // 检查是否有完成标记
-            if (localStorage.getItem('formCompleted') === 'true') {
-                showCompletedPage();
-            }
+            // 显示指定页面
+            document.getElementById(`page${pageNumber}`).classList.add('active-page');
         }
-        
-        function showMainPage() {
-            document.getElementById('page2').style.display = 'none';
-            document.getElementById('page1').style.display = 'block';
-        }
-        
-        function showCompletedPage() {
-            document.getElementById('page2').style.display = 'none';
-            document.getElementById('page3').style.display = 'block';
-        }
-        
-        // 检测从表单返回时的行为
-        window.addEventListener('focus', function() {
-            // 延迟检查，确保页面加载完成
-            setTimeout(function() {
-                if (localStorage.getItem('formStarted') === 'true') {
-                    // 这里可以询问用户是否完成了表单
-                    // 实际场景中，这里可以根据实际需求判断用户是否真的完成了表单
-                    // 目前我们假设用户返回时已经完成
-                    if (!localStorage.getItem('formCompleted')) {
-                        const completed = confirm('您已完成花名册填写吗？');
-                        if (completed) {
-                            localStorage.setItem('formCompleted', 'true');
-                            showCompletedPage();
-                        }
-                    }
-                }
-            }, 1000);
-        });
-        
-        // 页面加载时检查状态
-        window.addEventListener('load', function() {
-            // 如果有完成标记，则直接显示完成页面
-            if (localStorage.getItem('formCompleted') === 'true') {
-                showCompletedPage();
-            }
-        });
     </script>
 </body>
 </html>
