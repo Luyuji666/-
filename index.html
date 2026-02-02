@@ -3,106 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>员工入职引导</title>
+    <title>嗨亚员工入职引导</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #333;
+            padding: 20px;
+            line-height: 1.6;
         }
         
         .container {
-            width: 90%;
             max-width: 800px;
+            margin: 0 auto;
             background-color: white;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .welcome-header {
             text-align: center;
-        }
-        
-        h1 {
+            color: #333;
+            margin-bottom: 30px;
             font-size: 24px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        
-        h2 {
-            font-size: 20px;
-            margin-top: 20px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        p {
-            font-size: 16px;
-            line-height: 1.6;
-            margin: 10px 0;
-        }
-        
-        .step-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 30px 0;
-        }
-        
-        .step-item {
-            position: relative;
-            padding: 15px 0;
-            font-size: 16px;
-        }
-        
-        .step-item:not(:last-child)::after {
-            content: '↓';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #ccc;
-        }
-        
-        .btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 20px;
-        }
-        
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        
-        .tip {
-            font-size: 14px;
-            text-align: left;
-            margin: 15px 0;
-            color: #666;
-            padding-left: 20px;
-        }
-        
-        .link-container {
-            margin: 20px 0;
-        }
-        
-        a {
-            color: #007bff;
-            text-decoration: none;
             font-weight: bold;
-        }
-        
-        a:hover {
-            color: #0056b3;
         }
         
         .page {
@@ -113,13 +38,120 @@
             display: block;
         }
         
-        .note {
-            background-color: #e9f5ff;
-            border-left: 4px solid #007bff;
+        .process-flow {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            display: inline-block;
+            width: 120px;
+            margin: 0 15px;
+            vertical-align: top;
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #4a90e2;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .arrow {
+            display: inline-block;
+            width: 30px;
+            line-height: 60px;
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .btn-next {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-next:hover {
+            background-color: #357abd;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .link-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        
+        .link:hover {
+            color: #357abd;
+        }
+        
+        .tips {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4a90e2;
             padding: 15px;
             margin: 20px 0;
-            text-align: left;
-            border-radius: 0 5px 5px 0;
+            font-size: 14px;
+        }
+        
+        .material-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .material-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        
+        .material-item:last-child {
+            border-bottom: none;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .highlight {
+            background-color: #fffde7;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -127,49 +159,83 @@
     <div class="container">
         <!-- 首页 -->
         <div id="page1" class="page active-page">
-            <h1>欢迎加入我们！</h1>
-            <p>以下是入职流程，请按步骤操作：</p>
+            <div class="welcome-header">欢迎加入嗨亚！</div>
             
-            <ul class="step-list">
-                <li class="step-item">1. 扫描花名册二维码</li>
-                <li class="step-item">2. 提交入职材料</li>
-                <li class="step-item">3. 签署合同</li>
-            </ul>
+            <div class="process-flow">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <div class="step-text">扫描花名册二维码</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <div class="step-text">提交入职材料</div>
+                </div>
+                <div class="arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <div class="step-text">签署合同</div>
+                </div>
+            </div>
             
-            <button class="btn" onclick="showPage(2)">我已知晓，下一步</button>
+            <button class="btn-next" onclick="showPage(2)">我已知晓，下一步</button>
         </div>
         
-        <!-- 第二页 -->
+        <!-- 第二页 - 填写花名册 -->
         <div id="page2" class="page">
-            <h1>填写花名册</h1>
+            <h2 class="section-title">一、填写花名册</h2>
             
             <div class="link-container">
-                <p>点击下方链接填写花名册：</p>
-                <a href="https://f.wps.cn/g/PJKCRIH9?flowT=1770032774095&flowSign=596e198201&flow=flow" target="_blank">
+                <p>点击下方链接填写花名册</p>
+                <a href="https://f.wps.cn/g/PJKCRIH9?flowT=1770032774095&flowSign=596e198201&flow=flow" 
+                   target="_blank" 
+                   class="link">
                     https://f.wps.cn/g/PJKCRIH9?flowT=1770032774095&flowSign=596e198201&flow=flow
                 </a>
             </div>
             
-            <div class="note">
-                <p class="tip">• 身份证号最后一位为X的，请输入大写的X。</p>
-                <p class="tip">• 现住址填写具体到门牌号，例如"海南省三亚市天涯区建港新城10栋13楼1305"。</p>
-                <p class="tip">• 公司发薪银行为交通银行，请提交本人交通银行卡信息，银行卡号请不要用空格隔开。</p>
+            <div class="tips">
+                <p><span class="highlight">注意事项：</span></p>
+                <ul style="padding-left: 20px; margin: 10px 0;">
+                    <li>身份证号最后一位为X的，请输入大写的X</li>
+                    <li>现住址填写具体到门牌号，例如"海南省三亚市天涯区建港新城10栋13楼1305"</li>
+                    <li>公司发薪银行为交通银行，请提交本人交通银行卡信息，银行卡号请不要用空格隔开</li>
+                </ul>
             </div>
             
-            <p>花名册内容填写不多，大约3分钟就能填写完成，请您于今日内完成花名册的填写！</p>
+            <div class="tips">
+                <p>花名册内容填写不多，大约3分钟就能填写完成，请您于今日内完成花名册的填写！</p>
+            </div>
             
-            <button class="btn" onclick="showPage(3)">已完成花名册填写</button>
+            <button class="btn-next" onclick="showPage(3)">填写完成，继续下一步</button>
         </div>
         
-        <!-- 第三页 -->
+        <!-- 第三页 - 准备入职材料 -->
         <div id="page3" class="page">
-            <h1>花名册填写完成</h1>
-            <p>您已完成花名册的填写，请提前准备入职材料并耐心等待入职材料提交的通知短信</p>
+            <h2 class="section-title">二、准备入职材料</h2>
             
-            <div class="link-container">
-                <p>嗨亚24小时智能客户服务：</p>
-                <a href="https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c4" target="_blank">
-                    https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c4
+            <p>请提前准备入职材料并耐心等待入职材料提交的通知短信</p>
+            
+            <ul class="material-list">
+                <li class="material-item">彩色证件照(电子版)</li>
+                <li class="material-item">学历证书、学信网学历证明,相关职称证件(扫描或拍照)</li>
+                <li class="material-item">二代身份证原件及其正反面(扫描或拍照)</li>
+                <li class="material-item">与原单位解除劳动关系的证明文件(扫描或拍照)</li>
+                <li class="material-item">交通银行卡复印件(扫描或拍照)</li>
+                <li class="material-item">
+                    开具无犯罪记录证明(扫描或拍照)。
+                    海南户籍可在"海易办"搜索"无犯罪记录证明"，在"服务"处选择"出具无犯罪记录证明"；
+                    非海南户口及海南居留证人员可以联系户口所在地派出所办理或网上搜索开具方式。
+                    无犯罪证明开具需要2~3天审核时间，请尽快申请开具！
+                </li>
+            </ul>
+            
+            <div class="contact-info">
+                <p>如有任何疑问请咨询欢迎咨询嗨亚24小时智能客户服务助手</p>
+                <a href="https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c" 
+                   target="_blank" 
+                   class="link">
+                    https://work.weixin.qq.com/kfid/kfcae366b0c5ada72c
                 </a>
             </div>
         </div>
